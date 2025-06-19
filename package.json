@@ -1,0 +1,30 @@
+{
+  "name": "pixi-minesweep",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@pixi/assets": "^7.4.3",
+    "@pixi/filter-blur": "^7.4.3",
+    "@pixi/graphics-extras": "^7.4.3",
+    "@pixi/sound": "^6.0.1",
+    "gsap": "^3.12.7",
+    "howler": "^2.2.4",
+    "pixi.js": "^8.7.3"
+  },
+  "devDependencies": {
+    "@types/howler": "^2.2.12",
+    "@types/pixi.js": "^5.0.0",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.4"
+  }
+}

@@ -1,0 +1,351 @@
+{"frames": {
+
+"Flag_Idel-0.png":
+{
+	"frame": {"x":2786,"y":2701,"w":554,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":554,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-1.png":
+{
+	"frame": {"x":3343,"y":2026,"w":554,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":554,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-2.png":
+{
+	"frame": {"x":2786,"y":3376,"w":554,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":554,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-3.png":
+{
+	"frame": {"x":3342,"y":2701,"w":554,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":554,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-4.png":
+{
+	"frame": {"x":1,"y":1,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-6.png":
+{
+	"frame": {"x":1,"y":676,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-7.png":
+{
+	"frame": {"x":558,"y":1,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-8.png":
+{
+	"frame": {"x":1,"y":1351,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-9.png":
+{
+	"frame": {"x":558,"y":676,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-11.png":
+{
+	"frame": {"x":1115,"y":1,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-12.png":
+{
+	"frame": {"x":1,"y":2026,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-13.png":
+{
+	"frame": {"x":558,"y":1351,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-14.png":
+{
+	"frame": {"x":1115,"y":676,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-15.png":
+{
+	"frame": {"x":1672,"y":1,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-16.png":
+{
+	"frame": {"x":1,"y":2701,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-18.png":
+{
+	"frame": {"x":558,"y":2026,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-19.png":
+{
+	"frame": {"x":1115,"y":1351,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-20.png":
+{
+	"frame": {"x":1672,"y":676,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-21.png":
+{
+	"frame": {"x":2229,"y":1,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-22.png":
+{
+	"frame": {"x":1,"y":3376,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-23.png":
+{
+	"frame": {"x":558,"y":2701,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-24.png":
+{
+	"frame": {"x":1115,"y":2026,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-26.png":
+{
+	"frame": {"x":1672,"y":1351,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-27.png":
+{
+	"frame": {"x":2229,"y":676,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-28.png":
+{
+	"frame": {"x":2786,"y":1,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-30.png":
+{
+	"frame": {"x":558,"y":3376,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-31.png":
+{
+	"frame": {"x":1115,"y":2701,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-32.png":
+{
+	"frame": {"x":1672,"y":2026,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-33.png":
+{
+	"frame": {"x":2229,"y":1351,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-34.png":
+{
+	"frame": {"x":2786,"y":676,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-35.png":
+{
+	"frame": {"x":3343,"y":1,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-36.png":
+{
+	"frame": {"x":1115,"y":3376,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-37.png":
+{
+	"frame": {"x":1672,"y":2701,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-39.png":
+{
+	"frame": {"x":3342,"y":3376,"w":554,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":554,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-40.png":
+{
+	"frame": {"x":2229,"y":2026,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-42.png":
+{
+	"frame": {"x":2786,"y":1351,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-43.png":
+{
+	"frame": {"x":3343,"y":676,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-44.png":
+{
+	"frame": {"x":1672,"y":3376,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-45.png":
+{
+	"frame": {"x":2229,"y":2701,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-47.png":
+{
+	"frame": {"x":2786,"y":2026,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-48.png":
+{
+	"frame": {"x":3343,"y":1351,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Idel-49.png":
+{
+	"frame": {"x":2229,"y":3376,"w":555,"h":673},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+}},
+"animations": {
+	"Flag_Idel": ["Flag_Idel-0.png","Flag_Idel-1.png","Flag_Idel-2.png","Flag_Idel-3.png","Flag_Idel-4.png","Flag_Idel-6.png","Flag_Idel-7.png","Flag_Idel-8.png","Flag_Idel-9.png","Flag_Idel-11.png","Flag_Idel-12.png","Flag_Idel-13.png","Flag_Idel-14.png","Flag_Idel-15.png","Flag_Idel-16.png","Flag_Idel-18.png","Flag_Idel-19.png","Flag_Idel-20.png","Flag_Idel-21.png","Flag_Idel-22.png","Flag_Idel-23.png","Flag_Idel-24.png","Flag_Idel-26.png","Flag_Idel-27.png","Flag_Idel-28.png","Flag_Idel-30.png","Flag_Idel-31.png","Flag_Idel-32.png","Flag_Idel-33.png","Flag_Idel-34.png","Flag_Idel-35.png","Flag_Idel-36.png","Flag_Idel-37.png","Flag_Idel-39.png","Flag_Idel-40.png","Flag_Idel-42.png","Flag_Idel-43.png","Flag_Idel-44.png","Flag_Idel-45.png","Flag_Idel-47.png","Flag_Idel-48.png","Flag_Idel-49.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "Flag_Idel.png",
+	"format": "RGBA8888",
+	"size": {"w":3899,"h":4050},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:5076845cebcf28f1a0c8dc36eed6a391:b0be528a64891291e3938acb65209ec6:4af74571690745eb5dd8bd6b981a6ec4$"
+}
+}

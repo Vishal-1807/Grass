@@ -1,0 +1,207 @@
+{"frames": {
+
+"Flag_Reveal-0.png":
+{
+	"frame": {"x":1,"y":1,"w":187,"h":227},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":240,"y":705,"w":187,"h":227},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-1.png":
+{
+	"frame": {"x":230,"y":1,"w":371,"h":450},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":192,"y":506,"w":371,"h":450},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-2.png":
+{
+	"frame": {"x":1992,"y":542,"w":555,"h":673},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":307,"w":555,"h":673},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-3.png":
+{
+	"frame": {"x":2242,"y":1673,"w":710,"h":860},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":103,"y":140,"w":710,"h":860},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-4.png":
+{
+	"frame": {"x":3104,"y":1682,"w":739,"h":896},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":108,"w":739,"h":896},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-5.png":
+{
+	"frame": {"x":1426,"y":1665,"w":672,"h":814},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":113,"y":181,"w":672,"h":814},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-6.png":
+{
+	"frame": {"x":2610,"y":1102,"w":569,"h":691},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":140,"y":291,"w":569,"h":691},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-7.png":
+{
+	"frame": {"x":1257,"y":1,"w":495,"h":600},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":159,"y":372,"w":495,"h":600},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-8.png":
+{
+	"frame": {"x":682,"y":1,"w":473,"h":573},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":165,"y":396,"w":473,"h":573},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-9.png":
+{
+	"frame": {"x":1859,"y":1,"w":496,"h":602},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":159,"y":370,"w":496,"h":602},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-10.png":
+{
+	"frame": {"x":3119,"y":1,"w":541,"h":656},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":147,"y":322,"w":541,"h":656},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-11.png":
+{
+	"frame": {"x":3303,"y":1104,"w":576,"h":698},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":138,"y":284,"w":576,"h":698},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-12.png":
+{
+	"frame": {"x":709,"y":1615,"w":589,"h":715},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":135,"y":269,"w":589,"h":715},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-13.png":
+{
+	"frame": {"x":1,"y":1611,"w":581,"h":706},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":137,"y":277,"w":581,"h":706},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-14.png":
+{
+	"frame": {"x":1924,"y":1099,"w":564,"h":684},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":141,"y":297,"w":564,"h":684},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-15.png":
+{
+	"frame": {"x":659,"y":498,"w":547,"h":663},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":146,"y":316,"w":547,"h":663},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-16.png":
+{
+	"frame": {"x":2463,"y":1,"w":539,"h":654},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":148,"y":324,"w":539,"h":654},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-17.png":
+{
+	"frame": {"x":1,"y":374,"w":542,"h":656},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":147,"y":322,"w":542,"h":656},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-18.png":
+{
+	"frame": {"x":1324,"y":499,"w":550,"h":666},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":145,"y":313,"w":550,"h":666},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-19.png":
+{
+	"frame": {"x":3341,"y":544,"w":558,"h":675},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":143,"y":305,"w":558,"h":675},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-20.png":
+{
+	"frame": {"x":562,"y":1047,"w":562,"h":679},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":142,"y":301,"w":562,"h":679},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-21.png":
+{
+	"frame": {"x":1243,"y":1051,"w":562,"h":679},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":142,"y":301,"w":562,"h":679},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-22.png":
+{
+	"frame": {"x":1,"y":918,"w":559,"h":676},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":143,"y":304,"w":559,"h":676},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Flag_Reveal-23.png":
+{
+	"frame": {"x":2667,"y":544,"w":556,"h":672},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":308,"w":556,"h":672},
+	"sourceSize": {"w":1024,"h":1024}
+}},
+"animations": {
+	"Flag_Reveal": ["Flag_Reveal-0.png","Flag_Reveal-1.png","Flag_Reveal-2.png","Flag_Reveal-3.png","Flag_Reveal-4.png","Flag_Reveal-5.png","Flag_Reveal-6.png","Flag_Reveal-7.png","Flag_Reveal-8.png","Flag_Reveal-9.png","Flag_Reveal-10.png","Flag_Reveal-11.png","Flag_Reveal-12.png","Flag_Reveal-13.png","Flag_Reveal-14.png","Flag_Reveal-15.png","Flag_Reveal-16.png","Flag_Reveal-17.png","Flag_Reveal-18.png","Flag_Reveal-19.png","Flag_Reveal-20.png","Flag_Reveal-21.png","Flag_Reveal-22.png","Flag_Reveal-23.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "Flag_Reveal.png",
+	"format": "RGBA8888",
+	"size": {"w":4017,"h":2422},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ddaf7c33efddad5124d7d21b807d63e7:f8a37cb96c1e8fa0d9ba5bedd8d28fbe:b717281376569ec51b627989cc079fa5$"
+}
+}
