@@ -77,8 +77,8 @@ export const startButtonEvents = async (): Promise<boolean> => {
 
     console.log("Step 1: Starting round...");
     // Step 2: Start round with the generated ID
-    await createWebSocketRequest<any>('round_events', {
-      operation: 'round_events',
+    await createWebSocketRequest<any>('mines_round_start', {
+      operation: 'mines_round_start',
       data: {
         eventType: 'round_start',
         tableId: GlobalState.getTableId(),
@@ -103,8 +103,8 @@ export const startButtonEvents = async (): Promise<boolean> => {
 
     console.log("Step 2: Placing bet...");
     // Step 3: Place bet
-    await createWebSocketRequest<void>('placebet', {
-      operation: 'placebet',
+    await createWebSocketRequest<void>('mines_placebet', {
+      operation: 'mines_placebet',
       data: {
         tableId: GlobalState.getTableId(),
         roundId: GlobalState.getRoundId(),

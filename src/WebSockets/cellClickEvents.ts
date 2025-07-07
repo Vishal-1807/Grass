@@ -117,11 +117,11 @@ export const roundEndEvents = async (eventType: 'mine_hit' | 'collect' | 'last_r
     };
 
     // Use ONCE to ensure handler only fires once
-    ws.once('round_events', handleResponse);
+    ws.once('mines_round_end', handleResponse);
 
     // Send round_end event
-    ws.send('round_events', {
-      operation: 'round_events',
+    ws.send('mines_round_end', {
+      operation: 'mines_round_end',
       data: {
         eventType: 'round_end',
         roundId: GlobalState.getRoundId(),
