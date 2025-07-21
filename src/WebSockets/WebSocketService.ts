@@ -1,5 +1,6 @@
 import { GlobalState } from "../globals/gameState";
 import { gametoken } from './token';
+import { REACT_MODE } from "../reactMode";
 
 type WSMessage = { event: string; data: any };
 
@@ -13,8 +14,7 @@ export class WebSocketService {
 
   // Get the URL with the current token from GlobalState
   private getWebSocketUrl(): string {
-    const token = GlobalState.getToken();
-    // const token = gametoken;
+    const token = REACT_MODE ? GlobalState.getToken() : gametoken;
     return `wss://backend.inferixai.link/user/auth?authorization=Bearer ${token}`;
   }
 

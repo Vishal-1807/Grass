@@ -8,8 +8,8 @@ const createBalanceTab = (appWidth?: number, appHeight?: number) => {
     const TAB_HEIGHT_RATIO = 0.10;
     const TAB_X_RATIO = 0.1;
     const TAB_Y_RATIO = 0.033;
-    const TEXT_X_OFFSET_RATIO = 1.9;
-    const TEXT_SIZE_RATIO = 0.4;
+    const TEXT_X_OFFSET_RATIO = 1.7;
+    const TEXT_SIZE_RATIO = 0.11;
 
     const container = new Container();
     container.zIndex = 100;
@@ -89,7 +89,7 @@ const createBalanceTab = (appWidth?: number, appHeight?: number) => {
             balanceAmountText.y = balanceTab.y + (balanceTab.height / 2);
             
             // Scale text based on button size
-            const fontSize = balanceTab.height * TEXT_SIZE_RATIO;
+            const fontSize = balanceTab.width * TEXT_SIZE_RATIO;
             balanceAmountText.style = new TextStyle({
                 fontFamily: 'Arial',
                 fontSize: fontSize,

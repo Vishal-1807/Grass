@@ -9,9 +9,10 @@ import { WebSocketService } from './WebSockets/WebSocketService';
 import { getUIVisibilityManager, registerUIElement } from './utils/uiVisibilityManager';
 import { initializeActivityManager, pauseActivityTimer, resumeActivityTimer } from './utils/gameActivityManager';
 import { SoundManager } from './utils/SoundManager';
+import { REACT_MODE } from './reactMode';
 
 // 🔧 CONFIGURATION: Change this to switch between modes
-const USE_REACT_MODE = true; // Set to false for local mode
+const USE_REACT_MODE = REACT_MODE; // Set to false for local mode
 
 // Common game initialization logic
 const initializeGame = async (app: Application, container?: HTMLDivElement) => {

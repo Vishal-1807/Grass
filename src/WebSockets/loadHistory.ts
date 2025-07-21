@@ -1,5 +1,6 @@
 import { GlobalState } from "../globals/gameState";
 import { gametoken } from "./token";
+import { REACT_MODE } from "../reactMode";
 
 let currentHistoryResponse = null;
 
@@ -14,8 +15,8 @@ export const loadHistoryPage = async (page: number = 1, pageSize: number = 10) =
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // 'authorization': `Bearer ${gametoken}`,
-        'authorization': `Bearer ${GlobalState.getToken()}`
+        'authorization': REACT_MODE ?`Bearer ${GlobalState.getToken()}`: `Bearer ${gametoken}`,
+        // 'authorization': `Bearer ${GlobalState.getToken()}`
       },
       body: JSON.stringify({
         page: page,
