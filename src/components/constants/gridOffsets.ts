@@ -18,12 +18,12 @@ const gridOffsets: Record<number, OffsetConfig> = {
     offsetY: 0.15
   },
   12: {
-    offsetX: 0.8,
-    offsetY: 0.30
+    offsetX: 0.85,
+    offsetY: 0.27
   },
   15: {
-    offsetX: 1.0,
-    offsetY: 0.4
+    offsetX: 1.1,
+    offsetY: 0.35
   }
 };
 

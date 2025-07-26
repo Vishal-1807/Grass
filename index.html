@@ -28,9 +28,29 @@
 <body>
   <div id="splash">
     <video autoplay muted loop playsinline id="splash-video">
-      <source src="assets/minesweeper_splash.mp4" type="video/mp4" />
+      <source id="splash-video-source" src="" />
     </video>
   </div>
+  <script>
+    // Set splash video source from window.s3url when available
+    function setSplashVideoSource() {
+      const videoSource = document.getElementById('splash-video-source');
+      if (window.s3url && videoSource) {
+        videoSource.src = window.s3url + 'grass-minesweeper/assets/minesweeper_splash.mp4';
+        console.log('🎬 Splash video source set to:', videoSource.src);
+      } else if (videoSource) {
+        // Fallback to hardcoded URL if window.s3url is not available
+        videoSource.src = 'https://s3.eu-west-2.amazonaws.com/static.inferixai.link/pixi-game-assets/grass-minesweeper/assets/minesweeper_splash.mp4';
+        console.log('🎬 Using fallback splash video source');
+      }
+    }
+
+    // Try to set the source immediately
+    setSplashVideoSource();
+
+    // Also try after a short delay in case window.s3url is set asynchronously
+    setTimeout(setSplashVideoSource, 100);
+  </script>
   <script type="module" src="src/main.ts"></script>
 </body>
 </html>

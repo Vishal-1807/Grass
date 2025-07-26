@@ -1,8 +1,10 @@
 import { Assets } from 'pixi.js';
+import { REACT_MODE } from './reactMode';
+import { GlobalState } from './globals/gameState';
 
 export async function loadAssets() {
     // const ASSET_BASE = '';
-    const ASSET_BASE = 'https://s3.eu-west-2.amazonaws.com/static.inferixai.link/pixi-game-assets/grass-minesweeper/'
+    const ASSET_BASE = REACT_MODE ? `${GlobalState.getS3Url()}grass-minesweeper/` : 'https://s3.eu-west-2.amazonaws.com/static.inferixai.link/pixi-game-assets/grass-minesweeper/'
     
     // Load all assets including the font file
     await Assets.load([

@@ -19,6 +19,20 @@ const initializeGame = async (app: Application, container?: HTMLDivElement) => {
   // Enable sorting for z-index to work properly
   app.stage.sortableChildren = true;
 
+  //set urls, fetch from window (only if not already set in React mode)
+  if (!GlobalState.getS3Url()) {
+    const fetchUrls = async () => {
+      GlobalState.setS3Url((window as any).s3url);
+      GlobalState.setApiUrl((window as any).apiUrl);
+      GlobalState.setWebSocketUrl((window as any).websocketUrl);
+    }
+
+    await fetchUrls();
+    console.log(GlobalState.getS3Url(), GlobalState.getApiUrl(), GlobalState.getWebSocketUrl(), "urls fetched");
+  } else {
+    console.log('🌐 URLs already set from React mode initialization');
+  }
+
   // Initialize UI Visibility Manager
   const uiVisibilityManager = getUIVisibilityManager({
     animationDuration: 300,
@@ -303,6 +317,16 @@ const initReactMode = async (container: HTMLDivElement) => {
     console.warn("No token found in session storage");
   }
 
+  // Fetch URLs first to get S3 URL for splash screen
+  const fetchUrls = async () => {
+    GlobalState.setS3Url((window as any).s3url);
+    GlobalState.setApiUrl((window as any).apiUrl);
+    GlobalState.setWebSocketUrl((window as any).websocketUrl);
+  }
+
+  await fetchUrls();
+  console.log('🌐 URLs fetched for React mode:', GlobalState.getS3Url());
+
   // Create splash screen
   const splash = document.createElement('div');
   splash.id = 'splash';
@@ -328,7 +352,7 @@ const initReactMode = async (container: HTMLDivElement) => {
   video.style.objectFit = 'cover';
 
   const source = document.createElement('source');
-  source.src = 'https://s3.eu-west-2.amazonaws.com/static.inferixai.link/pixi-game-assets/grass-minesweeper/assets/minesweeper_splash.mp4';
+  source.src = GlobalState.getS3Url() + 'grass-minesweeper/assets/minesweeper_splash.mp4';
   source.type = 'video/mp4';
 
   video.appendChild(source);
