@@ -84,3 +84,37 @@ export function hideSplash() {
     const splash = document.getElementById('splash');
     if (splash) splash.remove();
 }
+
+export function setupSplashVideoLoadDetection() {
+    console.log('🎬 Setting up splash video load detection');
+    
+    // Find the splash video element (created in main.ts)
+    const splash = document.getElementById('splash');
+    if (!splash) {
+      console.warn('⚠️ Splash element not found');
+      return;
+    }
+    
+    const video = splash.querySelector('video');
+    if (!video) {
+      console.warn('⚠️ Video element not found in splash');
+      return;
+    }
+    
+    // Add loading detection
+    video.addEventListener('loadeddata', () => { //loadeddata is native HTML5 listener for video element
+      console.log('🎬 Splash video loaded successfully');
+      // Notify React that splash is ready
+      if (typeof (window as any).loadingCompleted === 'function') {
+        (window as any).loadingCompleted();
+      }
+    });
+  
+    video.addEventListener('error', (e) => {
+      console.error('❌ Error loading splash video:', e);
+      // Still notify React to avoid infinite loading
+      if (typeof (window as any).loadingCompleted === 'function') {
+        (window as any).loadingCompleted();
+      }
+    });
+  }

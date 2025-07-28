@@ -52,7 +52,7 @@ export class WebSocketService {
         const msg = JSON.parse(event.data);
 
         // Check for session expiry in the data object
-        if (msg.data && msg.data.status === "401 Session Expired") {
+        if (msg.data && (msg.data.status === "401 Session Expired" || msg.data.description == "token expired")) {
           console.log("Session expired, logging out user");
           if (typeof window !== 'undefined' && (window as any).logoutUser) {
             (window as any).logoutUser();

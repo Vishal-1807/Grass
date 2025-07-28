@@ -13,5 +13,7 @@ declare global {
     SendMessageToJS: (message: string) => void;
     ReactNativeWebView?: any;
     isInWebView?: boolean;
+    logoutUser: () => void;
+    loadingCompleted: () => void;
   }
 }

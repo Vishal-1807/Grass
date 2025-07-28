@@ -1255,11 +1255,11 @@ export const createMines = (appWidth: number, appHeight: number, rows: number, c
             console.log(`🟢 Current row ${currentRow} set to green overlays for new game`);
         }
 
-        // Set current row to use animated background for new game
-        if (newGrid && newGrid.setRowAnimatedBackground) {
-            newGrid.setRowAnimatedBackground(currentRow, true);
-            console.log(`🎬 Current row ${currentRow} set to animated background for new game`);
-        }
+        // // Set current row to use animated background for new game
+        // if (newGrid && newGrid.setRowAnimatedBackground) {
+        //     newGrid.setRowAnimatedBackground(currentRow, true);
+        //     console.log(`🎬 Current row ${currentRow} set to animated background for new game`);
+        // }
 
         // Update row tinting for fresh start
         if (newGrid && newGrid.updateRowTinting) {

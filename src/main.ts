@@ -1,5 +1,5 @@
 import { Application } from 'pixi.js'
-import { hideSplash, loadAssets } from './loader';
+import { hideSplash, loadAssets, setupSplashVideoLoadDetection } from './loader';
 import { createBackground, createBottombar, createTitle, createToolbar,
         createStartButton, createMines, createHome, createBalanceTab,
         createBetTab, createGridTab } from './components';
@@ -358,6 +358,10 @@ const initReactMode = async (container: HTMLDivElement) => {
   video.appendChild(source);
   splash.appendChild(video);
   container.appendChild(splash);
+
+  console.log('calling video completed listener');
+  setupSplashVideoLoadDetection();
+  console.log('called video completed listener');
 
   const app = new Application();
   await app.init({
