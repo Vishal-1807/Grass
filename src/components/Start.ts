@@ -126,41 +126,45 @@ const createStartButton = (appWidth, appHeight, minesContainer) => {
         }
     };
 
-    const handleStartClick = async () => {
-        if(isStartEventRunning) return;
-        isStartEventRunning = true;
-        text.showClickGreenCell();
-        recordUserActivity(ActivityTypes.GAME_START);
-        const now = Date.now();
-        if (now - lastClickTime < CLICK_DEBOUNCE_MS) return;
-        lastClickTime = now;
+    const handleStartClick = () => {
+        (async () => {
+            if(isStartEventRunning) return;
+            isStartEventRunning = true;
+            text.showClickGreenCell();
+            recordUserActivity(ActivityTypes.GAME_START);
+            const now = Date.now();
+            if (now - lastClickTime < CLICK_DEBOUNCE_MS) return;
+            lastClickTime = now;
 
-        try {
-            await startClickHandler();
-            SoundManager.playStartClick();
-        } catch (e) {
-            console.error('Start click failed', e);
-        } finally {
-            isStartEventRunning = false;
-        }
+            try {
+                await startClickHandler();
+                SoundManager.playStartClick();
+            } catch (e) {
+                console.error('Start click failed', e);
+            } finally {
+                isStartEventRunning = false;
+            }
+        })();
     };
 
-    const handleCollectClick = async () => {
-        if(isCollectEventRunning) return;
-        isCollectEventRunning = true;
-        recordUserActivity(ActivityTypes.COLLECT_CLICK);
-        const now = Date.now();
-        if (now - lastClickTime < CLICK_DEBOUNCE_MS) return;
-        lastClickTime = now;
+    const handleCollectClick = () => {
+        (async () => {
+            if(isCollectEventRunning) return;
+            isCollectEventRunning = true;
+            recordUserActivity(ActivityTypes.COLLECT_CLICK);
+            const now = Date.now();
+            if (now - lastClickTime < CLICK_DEBOUNCE_MS) return;
+            lastClickTime = now;
 
-        try {
-            await collectClickHandler();
-            SoundManager.playCollectClick();
-        } catch (e) {
-            console.error('Collect click failed', e);
-        } finally {
-            isCollectEventRunning = false;
-        }
+            try {
+                await collectClickHandler();
+                SoundManager.playCollectClick();
+            } catch (e) {
+                console.error('Collect click failed', e);
+            } finally {
+                isCollectEventRunning = false;
+            }
+        })();
     };
 
     const createButtonSprites = () => {

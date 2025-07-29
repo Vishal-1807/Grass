@@ -29,7 +29,7 @@ function createWebSocketRequest<T>(
           const result = responseHandler(res);
           resolve(result);
         } catch (error) {
-          reject(error);
+          reject(new Error(error));
         }
       }
     };

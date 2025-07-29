@@ -277,7 +277,8 @@ export const createMines = (appWidth: number, appHeight: number, rows: number, c
             multipliers: multipliers,
             
             // Game logic cell click handler
-            onCellClick: async (row: number, col: number) => {
+            onCellClick: (row: number, col: number) => {
+                (async () => {
                 recordUserActivity(ActivityTypes.CELL_CLICK);
                 console.log(`Cell clicked: row ${row}, col ${col}`);
 
@@ -545,6 +546,7 @@ export const createMines = (appWidth: number, appHeight: number, rows: number, c
                     // Mark animations as complete on error to restore button state
                     markAnimationsComplete();
                 }
+                })();
             }
         });
 
