@@ -1,1 +1,1 @@
-export const gametoken = '';
+export const gametoken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTM4MDI4ODUsIm9wZXJhdG9ySWQiOiJCT1VHRUUiLCJzZXNzaW9uSWQiOiIxMTUyNTgyNi1mZmUyLTQwOGUtYTg2YS1lMGZjZTA5MDgxYmEiLCJ1c2VySWQiOiJkZW1vMTIiLCJ1c2VybmFtZSI6ImRlbW8xMiJ9.zLheb1AcZAnEqlHiTdFRRvfKHwvjz3rNzdsn2d2LErc';
