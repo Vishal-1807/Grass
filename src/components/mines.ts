@@ -3,9 +3,10 @@ import { Container, Assets, Ticker } from 'pixi.js';
 import { createGrid } from './createGrid';
 import { getGridOffset } from './constants/gridOffsets';
 import { GlobalState } from '../globals/gameState';
-import { roundEndEvents } from '../WebSockets/cellClickEvents';
+import { cellClickEvents, roundEndEvents } from '../WebSockets/cellClickEvents';
+import { recordUserActivity, ActivityTypes } from '../utils/gameActivityManager';
+import { SoundManager } from '../utils/SoundManager';
 import { getTextAPI } from '../utils/textManager';
-import { CellClickHandlers } from './cellClickHandlers';
 
 export const createMines = (appWidth: number, appHeight: number, rows: number, cols: number, startButton?: any) => { // bottomTextDisplay?: any
     const container = new Container();
@@ -277,19 +278,275 @@ export const createMines = (appWidth: number, appHeight: number, rows: number, c
             
             // Game logic cell click handler
             onCellClick: (row: number, col: number) => {
-                // Create cell click handlers instance with context
-                const cellClickHandlers = new CellClickHandlers({
-                    container,
-                    minesGrid,
-                    currentCols,
-                    markAnimationsStarting,
-                    markAnimationsComplete,
-                    triggerForwardMovementAnimation,
-                    startButton
-                });
+                (async () => {
+                recordUserActivity(ActivityTypes.CELL_CLICK);
+                console.log(`Cell clicked: row ${row}, col ${col}`);
 
-                // Handle the cell click asynchronously
-                cellClickHandlers.handleCellClick(row, col);
+                // Check if game has started
+                if (!GlobalState.getGameStarted()) {
+                    console.warn('🚫 Cell click blocked - game not started');
+                    return;
+                }
+
+                // Only allow clicks on the current row (green overlay cells)
+                const currentRow = GlobalState.getCurrentRow();
+                if (row !== currentRow) {
+                    console.warn(`🚫 Cell click blocked - can only click on current row ${currentRow}, clicked row ${row}`);
+                    return;
+                }
+
+                console.log(`✅ Valid cell click on current row ${currentRow}, col ${col}`);
+
+                // Disable mines container immediately to prevent further clicks during processing
+                if ((container as any).disableContainer) {
+                    (container as any).disableContainer();
+                    console.log('🔒 Mines container disabled during cell click processing');
+                }
+
+                // Mark animations as starting to hide collect button during animations
+                markAnimationsStarting();
+
+                // Set entire row to pressed state immediately
+                const grid = minesGrid as any;
+                if (grid && grid.setRowPressed) {
+                    grid.setRowPressed(row, true);
+                    console.log(`🔽 Row ${row} set to pressed state`);
+                }
+
+                // Switch current row back to static background when clicked
+                if (grid && grid.setRowAnimatedBackground) {
+                    grid.setRowAnimatedBackground(row, false);
+                    console.log(`🎬 Row ${row} background switched back to static after click`);
+                }
+
+                try {
+                    // Call cellClickEvents from cellClickEvents.ts
+                    const result = await cellClickEvents(row, col) as { hitMine: boolean; response: any };
+                    console.log('📡 Cell click response received:', result);
+
+                    // Check if it was a mine hit based on the response
+                    if (result.hitMine) {
+                        SoundManager.playBombExplode();
+                        text.showPressStart();
+                        // Mine hit - show mine overlay and blast animation
+                        console.log('💥 Mine hit! Showing mine overlay and blast animation');
+                        // Play blast animation
+                        if (grid && grid.playBlastAnimation) {
+                            grid.playBlastAnimation(row, col);
+                        }
+                        if (grid && grid.addMineOverlay) {
+                            grid.addMineOverlay(row, col);
+                        }
+
+                        try {
+                            // Send round_end event for mine hit
+                            console.log('📡 Sending round_end event for mine hit...');
+                            const roundEndResult = await roundEndEvents('mine_hit');
+                            console.log('✅ Round end event successful:', roundEndResult);
+
+                            // Use the updated revealed matrix from round end response
+                            const gameMatrix = GlobalState.game_matrix;
+                            if (gameMatrix && gameMatrix.length > 0) {
+                                const totalRows = GlobalState.total_rows;
+                                const startMatrixRowIndex = totalRows - (row + 1);
+
+                                console.log(`💣 Mine exploded! Revealing all mines from matrix row ${startMatrixRowIndex} to end`);
+
+                                // Loop through all remaining rows from current row to the end
+                                for (let matrixRowIndex = startMatrixRowIndex; matrixRowIndex < gameMatrix.length; matrixRowIndex++) {
+                                    const matrixRow = gameMatrix[matrixRowIndex];
+                                    if (matrixRow) {
+                                        // Calculate the visual row for this matrix row
+                                        const visualRow = totalRows - (matrixRowIndex + 1);
+
+                                        // Check each column in this row for mines
+                                        for (let colIndex = 0; colIndex < matrixRow.length && colIndex < currentCols; colIndex++) {
+                                            const cellValue = matrixRow[colIndex];
+
+                                            // If this cell contains a mine, show bomb overlay
+                                            if (cellValue === 'MINE') {
+                                                console.log(`💣 Revealing mine at visual position (${visualRow}, ${colIndex})`);
+                                                if (grid && grid.addBombOverlay) {
+                                                    grid.addBombOverlay(visualRow, colIndex);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                console.warn('⚠️ No revealed matrix available to show remaining mines');
+                            }
+
+                        } catch (roundEndError) {
+                            console.error('❌ Round end event failed:', roundEndError);
+                            // Continue with game over logic even if round end fails
+                        }
+
+                        // Reset essential game state after mine explosion
+                        console.log('💥 Mine exploded - resetting essential game state');
+
+                        // Update row tinting after mine explosion - show progress up to where player reached
+                        if (grid && grid.updateRowTinting) {
+                            const currentRowBeforeReset = GlobalState.getCurrentRow();
+                            // Keep rows from currentRow down to 0 untinted (accessible/completed)
+                            // Keep rows above currentRow tinted (inaccessible)
+                            grid.updateRowTinting(currentRowBeforeReset);
+                            console.log(`🎨 Row tinting maintained after mine explosion - accessible rows 0-${currentRowBeforeReset} untinted, rows above tinted`);
+                        }
+
+                        // Reset only essential game state variables
+                        GlobalState.setGameStarted(false);
+                        GlobalState.setCurrentRow(GlobalState.total_rows - 1); // Reset to bottom row
+
+                        // Show mine explosion message immediately
+                        // if (bottomTextDisplay && (bottomTextDisplay as any).api && (bottomTextDisplay as any).api.showMineExplosionMessage) {
+                        //     (bottomTextDisplay as any).api.showMineExplosionMessage();
+                        // }
+
+                        console.log('🎮 Game over - start button is now enabled for new game');
+
+                        // Mark animations as complete after mine explosion animations are done
+                        markAnimationsComplete();
+
+                        // Temporarily hide buttons for 1 second after mine explosion
+                        if (startButton && startButton.temporarilyHideButtons) {
+                            startButton.temporarilyHideButtons();
+                        }
+                    } else {
+                        SoundManager.playFlagReveal();
+                        text.showYouCanWin(GlobalState.getReward());
+                        // Safe cell - show green flag and reveal mines in current row
+                        console.log('🟢 Safe cell! Showing green flag and revealing mines in current row');
+                        if (grid && grid.addGreenFlag) {
+                            grid.addGreenFlag(row, col);
+                        }
+
+                        // Show bomb overlays for mines in the current row using revealed matrix
+                        const gameMatrix = GlobalState.game_matrix;
+                        if (gameMatrix && gameMatrix.length > 0) {
+                            // Calculate the matrix row index for the current visual row
+                            // First row of revealed matrix corresponds to total_rows - 1
+                            // So matrix row = total_rows - (currentRow + 1)
+                            const totalRows = GlobalState.total_rows;
+                            const matrixRowIndex = totalRows - (row + 1);
+
+                            console.log(`🔍 Checking revealed matrix row ${matrixRowIndex} for current visual row ${row}`);
+
+                            if (gameMatrix[matrixRowIndex]) {
+                                const matrixRow = gameMatrix[matrixRowIndex];
+
+                                // Check each column in the current row
+                                for (let colIndex = 0; colIndex < matrixRow.length && colIndex < currentCols; colIndex++) {
+                                    const cellValue = matrixRow[colIndex];
+
+                                    if (cellValue === 'MINE') {
+                                        // If this cell contains a mine, show bomb overlay
+                                        console.log(`💣 Found mine at visual position (${row}, ${colIndex}), showing bomb overlay`);
+                                        if (grid && grid.addBombOverlay) {
+                                            grid.addBombOverlay(row, colIndex);
+                                        }
+                                    } else if (cellValue === 'HIDDEN') {
+                                        // If this cell is hidden, hide green light
+                                        console.log(`🔵 Found hidden cell at visual position (${row}, ${colIndex}), hiding green light`);
+                                        if (grid && grid.hideGreenLight) {
+                                            grid.hideGreenLight(row, colIndex);
+                                        }
+                                    }
+                                }
+                            } else {
+                                console.warn(`⚠️ Matrix row ${matrixRowIndex} not found in revealed matrix`);
+                            }
+                        } else {
+                            console.warn('⚠️ No revealed matrix available to show mine positions');
+                        }
+
+                        // Progress to next row after safe cell click with forward movement animation
+                        const newCurrentRow = row - 1;
+                        if (newCurrentRow >= 0) {
+                            console.log(`⬆️ Progressing from row ${row} to row ${newCurrentRow} with forward movement animation`);
+
+                            // Update the current row in global state first
+                            GlobalState.setCurrentRow(newCurrentRow);
+
+                            // Trigger forward movement animation with callback to update overlays
+                            triggerForwardMovementAnimation(() => {
+                                // Switch the new current row to green overlays after animation
+                                if (grid && grid.setRowGreenOverlay) {
+                                    grid.setRowGreenOverlay(newCurrentRow, true);
+                                    console.log(`🟢 Row ${newCurrentRow} overlays switched to green (new current row) after animation`);
+                                }
+
+                                // Switch the new current row to animated background after animation
+                                if (grid && grid.setRowAnimatedBackground) {
+                                    grid.setRowAnimatedBackground(newCurrentRow, true);
+                                    console.log(`🎬 Row ${newCurrentRow} background switched to animated (new current row) after animation`);
+                                }
+
+                                // Update row tinting for the new current row
+                                if (grid && grid.updateRowTinting) {
+                                    grid.updateRowTinting(newCurrentRow);
+                                    console.log(`🎨 Row tinting updated for new current row ${newCurrentRow} after animation`);
+                                }
+
+                                // Mark animations as complete after all cell click animations are done
+                                markAnimationsComplete();
+                            });
+                        } else {
+                            console.log('🎉 Game completed! Reached the top row.');
+                            SoundManager.playGameComplete();
+
+                            // Remove all row tinting after game completion - player won, all rows should be untinted
+                            if (grid && grid.updateRowTinting) {
+                                // Set to a row that doesn't exist to remove all tinting (player completed the game)
+                                grid.updateRowTinting(-1);
+                                console.log(`🎨 All row tinting removed after game completion`);
+                            }
+
+                            // Reset game state after reaching last row
+                            GlobalState.setGameStarted(false);
+                            GlobalState.setCurrentRow(GlobalState.total_rows - 1); // Reset to bottom row
+                            await roundEndEvents('mine_hit');
+
+                            // Show win message with current reward
+                            text.showYouWinCollect(GlobalState.getReward());
+
+                            const currentReward = GlobalState.getReward();
+                            console.log(`🏆 Game won by reaching last row! Reward: ${currentReward}`);
+
+                            // Update bottom text to show win message for 3 seconds, then "Press Start"
+                            // if (bottomTextDisplay && (bottomTextDisplay as any).api && (bottomTextDisplay as any).api.showWinMessageThenPressStart) {
+                            //     (bottomTextDisplay as any).api.showWinMessageThenPressStart(currentReward);
+                            // }
+
+                            // Mark animations as complete for game completion
+                            markAnimationsComplete();
+
+                            // Temporarily hide buttons for 1 second after game completion
+                            if (startButton && startButton.temporarilyHideButtons) {
+                                startButton.temporarilyHideButtons();
+                            }
+                        }
+                    }
+
+                    
+
+                } catch (error) {
+                    console.error('❌ Cell click failed:', error);
+                    // Reset row pressed state on error
+                    if (grid && grid.setRowPressed) {
+                        grid.setRowPressed(row, false);
+                    }
+
+                    // // Re-enable mines container on error
+                    // if ((container as any).enableContainer) {
+                    //     (container as any).enableContainer();
+                    //     console.log('🔓 Mines container re-enabled after cell click error');
+                    // }
+
+                    // Mark animations as complete on error to restore button state
+                    markAnimationsComplete();
+                }
+                })();
             }
         });
 
