@@ -1,8 +1,10 @@
 import { Application } from 'pixi.js'
 import { hideSplash, loadAssets, setupSplashVideoLoadDetection } from './loader';
-import { createBackground, createBottombar, createTitle, createToolbar,
-        createStartButton, createMines, createHome, createBalanceTab,
-        createBetTab, createGridTab } from './components';
+import {
+  createBackground, createBottombar, createTitle, createToolbar,
+  createStartButton, createMines, createHome, createBalanceTab,
+  createBetTab, createGridTab
+} from './components';
 import { initializeTextDisplay, getTextAPI } from './utils/textManager';
 import { GlobalState } from './globals/gameState';
 import { WebSocketService } from './WebSockets/WebSocketService';
@@ -65,7 +67,7 @@ const initializeGame = async (app: Application, container?: HTMLDivElement) => {
   // Initialize text display
   const textDisplay = initializeTextDisplay(app.screen.width, app.screen.height);
   const text = getTextAPI();
-  
+
   // Create components
   const background = createBackground(app.screen.width, app.screen.height);
   app.stage.addChild(background);
@@ -137,10 +139,17 @@ const initializeGame = async (app: Application, container?: HTMLDivElement) => {
   };
 
   // STEP 3: Create start button
-  const createStartButtonStep = (): void => {
+  const createStartButtonStep = async (): Promise<void> => {
     console.log('🎮 STEP 3: Creating start button...');
     startButton = createStartButton(app.screen.width, app.screen.height, mines);
     app.stage.addChild(startButton);
+
+    // Wait for button to be fully initialized
+    if (startButton && (startButton as any).waitForInitialization) {
+      console.log('⏳ Waiting for button initialization to complete...');
+      await (startButton as any).waitForInitialization();
+      console.log('✅ Button initialization confirmed complete');
+    }
 
     // Set the start button reference in the mines container
     if (mines && (mines as any).setStartButton) {
@@ -200,8 +209,8 @@ const initializeGame = async (app: Application, container?: HTMLDivElement) => {
       // Step 2: Check pending games
       const hasPendingGame = await checkAndHandlePendingGames();
 
-      // Step 3: Create start button
-      createStartButtonStep();
+      // Step 3: Create start button and wait for initialization
+      await createStartButtonStep();
 
       // Step 4: Add sounds
       AddSounds();
@@ -226,7 +235,7 @@ const initializeGame = async (app: Application, container?: HTMLDivElement) => {
     } catch (error) {
       console.error('❌ Error in main flow:', error);
       // Fallback: still create start button and remove splash
-      createStartButtonStep();
+      await createStartButtonStep();
       removeSplashScreen();
     }
   };
@@ -234,10 +243,8 @@ const initializeGame = async (app: Application, container?: HTMLDivElement) => {
   // Add listener for pending game restoration completion to remove splash screen
   GlobalState.addPendingGameRestoreCompleteListener(() => {
     console.log('🎨 Pending game restoration completed - removing splash screen');
-    // Add a small delay to ensure all visual updates are complete
-    setTimeout(() => {
-      removeSplashScreen();
-    }, 100);
+    // Remove splash screen immediately since button is already initialized
+    removeSplashScreen();
   });
 
   // Start the main flow
@@ -246,7 +253,7 @@ const initializeGame = async (app: Application, container?: HTMLDivElement) => {
   const resize = () => {
     const newWidth = app.screen.width;
     const newHeight = app.screen.height;
-    
+
     // Update all components using their resize methods
     if (background && (background as any).resize) {
       (background as any).resize(newWidth, newHeight);
@@ -307,7 +314,7 @@ const initializeGame = async (app: Application, container?: HTMLDivElement) => {
 // React mode initialization
 const initReactMode = async (container: HTMLDivElement) => {
   console.log('🔧 Starting in REACT MODE');
-  
+
   // Get token from session storage instead of bridge
   const token = sessionStorage.getItem('token') || "";
   if (token) {
@@ -398,7 +405,7 @@ const initReactMode = async (container: HTMLDivElement) => {
 // Local mode initialization
 const initLocalMode = async () => {
   console.log('🔧 Starting in LOCAL MODE');
-  
+
   const app = new Application();
   await app.init({
     background: '#080f16',
@@ -433,23 +440,23 @@ const checkPendingGames = async (removeSplashScreen: () => void): Promise<boolea
 
   return new Promise<boolean>((resolve) => {
     console.log('🔍 === CHECKING PENDING GAMES ===');
-    
+
     ws.send('minesweeper_game_load', {
       operation: 'minesweeper_game_load',
       data: {
         tableId: GlobalState.getTableId(),
       },
     });
-    
-    ws.on('minesweeper_game_load', (res) => {     
+
+    ws.on('minesweeper_game_load', (res) => {
       if (res?.status === '400') {
         console.log('✅ No pending game found - clean state');
         resolve(false); // No pending game
       }
       else if (res?.status === '200 OK') {
         console.log('🎮 200 OK response received');
-        
-        if(res?.hasExistingGame){
+
+        if (res?.hasExistingGame) {
           console.log(res);
           console.log('🎮 hasExistingGame is TRUE - processing restoration...');
           console.log('🎮 Restoration data:', {
@@ -472,7 +479,7 @@ const checkPendingGames = async (removeSplashScreen: () => void): Promise<boolea
           const hasValidRoundId = res?.roundId && res?.roundId !== null && res?.roundId !== '';
 
           const text = getTextAPI();
-          if(completedRows == undefined){
+          if (completedRows == undefined) {
             text.showClickGreenCell()
           } else {
             text.showYouCanWin(res?.rowRewards[completedRows - 1])
@@ -513,7 +520,7 @@ const checkPendingGames = async (removeSplashScreen: () => void): Promise<boolea
 
           // STEP 4: Set round ID
           GlobalState.setRoundId(res?.roundId);
-          
+
           // STEP 5: Set current row (convert from backend to frontend coordinate system)
           if (res.currentRow !== undefined) {
             GlobalState.setCurrentRow(frontendCurrentRow);
@@ -521,10 +528,10 @@ const checkPendingGames = async (removeSplashScreen: () => void): Promise<boolea
             // Default to starting position if no current row provided
             GlobalState.setCurrentRow(GlobalState.total_rows - 1);
           }
-          
+
           // STEP 6: Calculate and set the current reward based on current row
           // Set the calculated reward
-          if(res?.rowRewards){
+          if (res?.rowRewards) {
             const calculatedReward = res?.betAmount * res?.rowRewards[res?.completedRows - 1];
             console.log(`🎮 Setting reward to: ${calculatedReward}`);
             GlobalState.setReward(calculatedReward);
@@ -534,7 +541,7 @@ const checkPendingGames = async (removeSplashScreen: () => void): Promise<boolea
           console.log('🎮 Setting game as started for pending game...');
           GlobalState.setGameStarted(true);
 
-           // STEP 8: Delay the visual restoration to ensure all state is set
+          // STEP 8: Delay the visual restoration to ensure all state is set
           setTimeout(() => {
             console.log('🎨 About to trigger pending game restore...');
             console.log('🎨 Current state before restoration:', {

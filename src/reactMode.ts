@@ -1,1 +1,1 @@
-export const REACT_MODE = false;
+export const REACT_MODE = true;
